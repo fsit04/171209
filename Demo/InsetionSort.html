@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Array</title>
+	<meta charset="utf-8" />
+</head>
+<body>
+
+    <input type="button" id="test" value="click me to test your code" />
+    <div id="report"></div>
+
+<script>
+// [3, 0, 1, 8, 7, 2, 5, 4, 9, 6];
+
+// source:
+// http://codingmiles.com/sorting-algorithms-insertion-sort-using-javascript/
+function insertionSort(unsortedList) {  
+    var len = unsortedList.length;
+    for (var i = 1; i < len; i++) {
+        var tmp = unsortedList[i]; //Copy of the current element. 
+        /*Check through the sorted part and compare with the number in tmp. If large, shift the number*/
+        for (var j = i - 1; j >= 0 && (unsortedList[j] > tmp); j--) {
+            //Shift the number
+            unsortedList[j + 1] = unsortedList[j];
+        }
+        //Insert the copied number at the correct position
+        //in sorted part. 
+        unsortedList[j + 1] = tmp;
+    }
+}
+
+
+test.onclick = function () {
+    // 參考資料: 如何建立/初始化陣列 (Page 30)
+    // 任務: 請建立一個陣列，內容依序為: 3, 0, 1, 8, 7, 2, 5, 4, 9, 6
+    
+    var data = [3, 0, 1, 8, 7, 2, 5, 4, 9, 6];
+
+    insertionSort(data);
+
+    report.innerText = data.toString();
+    
+}  // end of test.onclick
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Array</title>
+	<meta charset="utf-8" />
+</head>
+<body>
+
+    <input type="button" id="test" value="click me to test your code" />
+    <div id="report"></div>
+
+<script>
+
+
+// source: https://www.nczonline.net/blog/2012/11/27/computer-science-in-javascript-quicksort/
+
+function swap(items, firstIndex, secondIndex){
+    var temp = items[firstIndex];
+    items[firstIndex] = items[secondIndex];
+    items[secondIndex] = temp;
+}
+
+function partition(items, left, right) {
+
+    var pivot   = items[Math.floor((right + left) / 2)],
+        i       = left,
+        j       = right;
+
+
+    while (i <= j) {
+
+        while (items[i] < pivot) {
+            i++;
+        }
+
+        while (items[j] > pivot) {
+            j--;
+        }
+
+        if (i <= j) {
+            swap(items, i, j);
+            i++;
+            j--;
+        }
+    }
+
+    return i;
+}
+
+function quickSort(items, left, right) {
+
+    var index;
+
+    if (items.length > 1) {
+
+        index = partition(items, left, right);
+
+        if (left < index - 1) {
+            quickSort(items, left, index - 1);
+        }
+
+        if (index < right) {
+            quickSort(items, index, right);
+        }
+
+    }
+
+    return items;
+}
+
+
+test.onclick = function () {
+    // 參考資料: 如何建立/初始化陣列 (Page 30)
+    // 任務: 請建立一個陣列，內容依序為: 3, 0, 1, 8, 7, 2, 5, 4, 9, 6
+    
+    var data = [3, 0, 1, 8, 7, 2, 5, 4, 9, 6];
+
+    var result = quickSort(data, 0, data.length - 1);
+
+    report.innerText = result.toString();
+    
+}  // end of test.onclick
+
+</script>
+
+</body>
+</html>
